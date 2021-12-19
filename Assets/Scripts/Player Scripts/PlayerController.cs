@@ -75,9 +75,6 @@ public class PlayerController : MonoBehaviour
 
         _velocity.y += _gravity * Time.deltaTime;
         _characterController.Move(_velocity * Time.deltaTime);
-
-        // Brackeys FIRST PERSON MOVEMENT in Unity - FPS Controller  //17:36/23:52
-
     }
 
     private void JumpMechanic()
@@ -92,7 +89,8 @@ public class PlayerController : MonoBehaviour
     {
         _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, GroundLayerMask);
 
-        if (_isGrounded && _velocity.y < 0)
+        bool keepPlayerAboveGround = _isGrounded && _velocity.y < 0;
+        if (keepPlayerAboveGround)
         {
             _velocity.y = -2f;
         }
