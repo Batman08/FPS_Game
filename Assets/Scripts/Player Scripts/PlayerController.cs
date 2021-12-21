@@ -75,6 +75,9 @@ public class PlayerController : MonoBehaviour
 
         _velocity.y += _gravity * Time.deltaTime;
         _characterController.Move(_velocity * Time.deltaTime);
+
+        // Brackeys Shooting with Raycasts - Unity Tutorial       //00:00/13:40
+
     }
 
     private void JumpMechanic()
