@@ -23,6 +23,9 @@ public class AKRifle : MonoBehaviour
 
     private void Update()
     {
-        _assaultRifle.FireWeapon(PlayerCamera);
+        if (Input.GetMouseButtonDown(0))
+        {
+            _assaultRifle.FireWeapon(PlayerCamera);
+        }
     }
 }

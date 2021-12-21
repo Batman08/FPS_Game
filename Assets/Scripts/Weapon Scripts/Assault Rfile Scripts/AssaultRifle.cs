@@ -18,12 +18,21 @@ public class AssaultRifle : MonoBehaviour, IWeapon
         // FOR SAVING  Weapon weapon = new Weapon(AssaultRifleName, AssaultRifleDamage, AssaultRifleFireRate, AssaultRifleRange, AssaultRifleAmmunition, AsaultRifleClipSize);
     }
 
-    public void FireWeapon(Camera camera) {
+    public void FireWeapon(Camera camera)
+    {
         RaycastHit hit;
 
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, AssaultRifleRange))
         {
             Debug.Log(hit.transform.name);
+
+            Target target = hit.transform.GetComponent<Target>();
+
+            bool targetExists = target != null;
+            if (targetExists)
+            {
+                target.TakeDamage(damage: AssaultRifleDamage);
+            }
         }
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\Weapon Scripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Assault Rfile Scripts\AssaultRifle.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Assault Rfile Scripts\AKRifle.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\Target.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
