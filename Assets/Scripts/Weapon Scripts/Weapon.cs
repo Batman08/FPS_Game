@@ -37,5 +37,7 @@ public class Weapon
         void SaveDate();
 
         void FireWeapon(Camera camera);
+
+        IEnumerator ReloadWeapon();
     }
 }

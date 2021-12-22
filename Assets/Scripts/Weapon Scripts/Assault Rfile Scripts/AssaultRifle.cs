@@ -9,9 +9,14 @@ public class AssaultRifle : MonoBehaviour, IWeapon
     public string AssaultRifleName;
     public float AssaultRifleDamage;
     public float AssaultRifleFireRate;
+    public float AssaultRifleNextTimeToFire;
     public float AssaultRifleRange;
-    public int AssaultRifleAmmunition;
+    public float AsaultRifleReloadTime;
+    public int AssaultRifleTotalAmmunition;
+    public int AsaultRifleDefaultClipSize;
     public int AsaultRifleClipSize;
+    public bool IsReloading;
+    public ParticleSystem MuzzleFlash;
 
     public void SaveDate()
     {
@@ -20,6 +25,10 @@ public class AssaultRifle : MonoBehaviour, IWeapon
 
     public void FireWeapon(Camera camera)
     {
+        MuzzleFlash.Play();
+
+        AsaultRifleClipSize--;
+
         RaycastHit hit;
 
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, AssaultRifleRange))
@@ -34,5 +43,35 @@ public class AssaultRifle : MonoBehaviour, IWeapon
                 target.TakeDamage(damage: AssaultRifleDamage);
             }
         }
+    }
+
+    public IEnumerator ReloadWeapon()
+    {
+        IsReloading = true;
+        
+        Debug.Log("Reloading weapon.......");
+        
+        yield return new WaitForSeconds(AsaultRifleReloadTime);
+        
+        int onlyNeed = AsaultRifleDefaultClipSize - AsaultRifleClipSize;
+        
+        bool hasEnoughBullets = (AssaultRifleTotalAmmunition - onlyNeed) >= 0;
+        bool cantHaveFullClip = (AssaultRifleTotalAmmunition - onlyNeed) <= 0;
+        if (hasEnoughBullets)
+        {
+            AssaultRifleTotalAmmunition -= onlyNeed;
+            AsaultRifleClipSize += onlyNeed;
+        }
+        else if (cantHaveFullClip)
+        {
+            AsaultRifleClipSize += AssaultRifleTotalAmmunition;
+            AssaultRifleTotalAmmunition = 0;
+        }
+        else
+        {
+            Debug.Log("NO BULLETS LEFT");
+        }
+
+        IsReloading = false;
     }
 }
