@@ -16,6 +16,7 @@ public class AssaultRifle : MonoBehaviour, IWeapon
     public int AsaultRifleDefaultClipSize;
     public int AsaultRifleClipSize;
     public bool IsReloading;
+    public bool UnlimitedAmmo;
     public ParticleSystem MuzzleFlash;
 
     public void SaveDate()
@@ -27,7 +28,14 @@ public class AssaultRifle : MonoBehaviour, IWeapon
     {
         MuzzleFlash.Play();
 
-        AsaultRifleClipSize--;
+        if (!UnlimitedAmmo)
+        {
+            AsaultRifleClipSize--; 
+        }
+        else
+        {
+            Debug.Log("UNLIMITED AMMO ENABLED");
+        }
 
         RaycastHit hit;
 
@@ -48,13 +56,13 @@ public class AssaultRifle : MonoBehaviour, IWeapon
     public IEnumerator ReloadWeapon()
     {
         IsReloading = true;
-        
+
         Debug.Log("Reloading weapon.......");
-        
+
         yield return new WaitForSeconds(AsaultRifleReloadTime);
-        
+
         int onlyNeed = AsaultRifleDefaultClipSize - AsaultRifleClipSize;
-        
+
         bool hasEnoughBullets = (AssaultRifleTotalAmmunition - onlyNeed) >= 0;
         bool cantHaveFullClip = (AssaultRifleTotalAmmunition - onlyNeed) <= 0;
         if (hasEnoughBullets)

@@ -10,21 +10,34 @@ public class AKRifle : MonoBehaviour
     public Camera PlayerCamera;
     public ParticleSystem AKRifleMuzzleFlash;
     public TextMeshProUGUI AmmoCountText;
+    public bool UnlimitedAmmo = false;
+    public string AssaultRifleName;
+    public float AssaultRifleDamage;
+    public float AssaultRifleFireRate;
+    public float AssaultRifleNextTimeToFire;
+    public float AssaultRifleRange;
+    public float AsaultRifleReloadTime;
+    public int AssaultRifleTotalAmmunition;
+    public int AsaultRifleDefaultClipSize;
+    public int AsaultRifleClipSize;
+    public bool IsReloading;
 
     private AssaultRifle _assaultRifle;
 
     private void Awake()
     {
         _assaultRifle = new AssaultRifle();
-        _assaultRifle.AssaultRifleName = WEAPON_NAME;
-        _assaultRifle.AssaultRifleDamage = 0f;
-        _assaultRifle.AssaultRifleFireRate = 13.5f;
-        _assaultRifle.AssaultRifleNextTimeToFire = 0f;
-        _assaultRifle.AssaultRifleRange = 100f;
-        _assaultRifle.AsaultRifleReloadTime = 1f;
-        _assaultRifle.AssaultRifleTotalAmmunition = 150;
-        _assaultRifle.AsaultRifleDefaultClipSize = 50;
-        _assaultRifle.AsaultRifleClipSize = _assaultRifle.AsaultRifleDefaultClipSize;
+        AssaultRifleName = WEAPON_NAME;
+        _assaultRifle.AssaultRifleName = AssaultRifleName;
+        _assaultRifle.AssaultRifleDamage = AssaultRifleDamage;
+        _assaultRifle.AssaultRifleFireRate = AssaultRifleFireRate;
+        _assaultRifle.AssaultRifleNextTimeToFire = AssaultRifleNextTimeToFire;
+        _assaultRifle.AssaultRifleRange = AssaultRifleRange;
+        _assaultRifle.AsaultRifleReloadTime = AsaultRifleReloadTime;
+        _assaultRifle.AssaultRifleTotalAmmunition = AssaultRifleTotalAmmunition;
+        _assaultRifle.AsaultRifleDefaultClipSize = AsaultRifleDefaultClipSize;
+        AsaultRifleClipSize = AsaultRifleDefaultClipSize;
+        _assaultRifle.AsaultRifleClipSize = AsaultRifleDefaultClipSize;
         _assaultRifle.IsReloading = false;
         _assaultRifle.MuzzleFlash = AKRifleMuzzleFlash;
     }
@@ -32,6 +45,8 @@ public class AKRifle : MonoBehaviour
 
     private void FixedUpdate()
     {
+        _assaultRifle.UnlimitedAmmo = UnlimitedAmmo;
+
         AmmoCountText.text = $"Ammo {_assaultRifle.AsaultRifleClipSize }/{_assaultRifle.AssaultRifleTotalAmmunition}";
 
         if (_assaultRifle.IsReloading)

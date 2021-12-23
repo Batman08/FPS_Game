@@ -203,3 +203,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerCamera: {fileID: 0}
   AKRifleMuzzleFlash: {fileID: 9159469676220729777}
+  AmmoCountText: {fileID: 0}
+  UnlimitedAmmo: 0
+  AssaultRifleName: 
+  AssaultRifleDamage: 0
+  AssaultRifleFireRate: 13.5
+  AssaultRifleNextTimeToFire: 0
+  AssaultRifleRange: 100
+  AsaultRifleReloadTime: 1
+  AssaultRifleTotalAmmunition: 150
+  AsaultRifleDefaultClipSize: 50
+  AsaultRifleClipSize: 0
+  IsReloading: 0
