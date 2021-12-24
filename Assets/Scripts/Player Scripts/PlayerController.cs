@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     /*Public Variables*/
     public LayerMask GroundLayerMask;
+    public float Health;
 
 
     /*Private Variables*/
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        Health = 300f;
         _groundCheck = GetComponentInChildren<Transform>().GetChild(2);
         MouseLockState();
     }
@@ -94,5 +96,21 @@ public class PlayerController : MonoBehaviour
         {
             _velocity.y = -2f;
         }
+    }
+
+    public void PlayerTakeDamage(float damage)
+    {
+        Health -= damage;
+
+        bool targetHasNoHealth = Health <= 0;
+        if (targetHasNoHealth)
+        {
+            PlayerDie();
+        }
+    }
+    private void PlayerDie()
+    {
+        Debug.Log("Killed Player");
+        //Destroy(gameObject);
     }
 }

@@ -8,7 +8,6 @@ public class WeaponSwitching : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("Test");
         SelectWeapon();
     }
 

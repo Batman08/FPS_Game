@@ -28,9 +28,10 @@ public class AssaultRifle : MonoBehaviour, IWeapon
     {
         MuzzleFlash.Play();
 
+        //Checks if unlimited ammo is enabled
         if (!UnlimitedAmmo)
         {
-            AsaultRifleClipSize--; 
+            AsaultRifleClipSize--;
         }
         else
         {
@@ -39,16 +40,19 @@ public class AssaultRifle : MonoBehaviour, IWeapon
 
         RaycastHit hit;
 
+        //creates raycast and checks if it hit an object with Target component
         if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, AssaultRifleRange))
         {
             Debug.Log(hit.transform.name);
 
             Target target = hit.transform.GetComponent<Target>();
 
+            //if target still exists make it take damage
             bool targetExists = target != null;
             if (targetExists)
             {
-                target.TakeDamage(damage: AssaultRifleDamage);
+                target.TargetTakeDamage(damage: AssaultRifleDamage);
+                Debug.Log("HITTING TARGET");
             }
         }
     }
@@ -65,16 +69,19 @@ public class AssaultRifle : MonoBehaviour, IWeapon
 
         bool hasEnoughBullets = (AssaultRifleTotalAmmunition - onlyNeed) >= 0;
         bool cantHaveFullClip = (AssaultRifleTotalAmmunition - onlyNeed) <= 0;
+        //For times when still enough TotalAmmunition left when clip is re-filled
         if (hasEnoughBullets)
         {
             AssaultRifleTotalAmmunition -= onlyNeed;
             AsaultRifleClipSize += onlyNeed;
         }
+        //For times when no TotalAmmunition left when clip is re-filled
         else if (cantHaveFullClip)
         {
             AsaultRifleClipSize += AssaultRifleTotalAmmunition;
             AssaultRifleTotalAmmunition = 0;
         }
+        //For times when no ammunition left
         else
         {
             Debug.Log("NO BULLETS LEFT");
