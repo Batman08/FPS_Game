@@ -60,8 +60,10 @@
     <Compile Include="Assets\Scripts\Weapon Scripts\Assault Rfile Scripts\AKRifle.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Weapon.cs" />
-    <Compile Include="Assets\Scripts\EnemyScripts\Target.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\WeaponSwitching.cs" />
+    <Compile Include="Assets\Scripts\TargetScripts\Target.cs" />
+    <Compile Include="Assets\Scripts\TargetScripts\TargetSpawner.cs" />
+    <Compile Include="Assets\Scripts\Manager Scripts\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
