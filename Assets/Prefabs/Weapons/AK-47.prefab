@@ -208,7 +208,7 @@ MonoBehaviour:
   _damage: 45
   _fireRate: 25
   _nextTimeToFire: 0
-  _range: 0
+  _range: 35
   _reloadTime: 0.5
   _totalAmmunition: 500
   _defaultClipSize: 75

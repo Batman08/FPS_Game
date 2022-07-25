@@ -8,6 +8,10 @@ public class TargetSpawner : MonoBehaviour
     public bool ShouldSpawn = true;
     public GameObject TargetObject;
 
+    [SerializeField] private Transform[] _spawnLocations;
+
+    private int _randomSpawnLocationIndex;
+
     private void Start()
     {
 
@@ -19,7 +23,9 @@ public class TargetSpawner : MonoBehaviour
         {
             while (transform.childCount < NumberOfTargets())
             {
-                Instantiate(TargetObject, transform);
+                _randomSpawnLocationIndex = Random.Range(0, _spawnLocations.Length);
+                //Instantiate(TargetObject, transform);
+                Instantiate(TargetObject, _spawnLocations[_randomSpawnLocationIndex].position, Quaternion.identity, transform);
                 ShouldSpawn = false;
             }
         }

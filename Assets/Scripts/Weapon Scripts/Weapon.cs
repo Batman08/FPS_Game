@@ -23,7 +23,7 @@ public class Weapon : MonoBehaviour
     private WeaponBluePrint _weaponBluePrint;
     private WeaponDetails weaponDetails;
 
-    private void Start()
+    private void Awake()
     {
         weaponDetails = new WeaponDetails();
         weaponDetails.Name = _name;
@@ -60,9 +60,6 @@ public class Weapon : MonoBehaviour
         bool hasEnoughAmmoToReload = _weaponBluePrint.TotalAmmunition > 0;
         if (hasEnoughAmmoToReload)
         {
-            //bool pressingReloadButton = Input.GetKey(KeyCode.R);
-            //bool clipIsEmpty = _weaponBluePrint.ClipSize <= 0;
-            //bool tryingToReload = pressingReloadButton || clipIsEmpty;
             if (TryingToReload())
             {
                 StartCoroutine(_weaponBluePrint.ReloadWeapon());
@@ -96,7 +93,7 @@ public class Weapon : MonoBehaviour
 
     private void OnDisable()
     {
-        if (_weaponBluePrint.IsReloading == true/*TryingToReload()*/)
+        if (_weaponBluePrint.IsReloading == true)
         {
             StopCoroutine(_weaponBluePrint.ReloadWeapon());
             _weaponBluePrint.IsReloading = false;
