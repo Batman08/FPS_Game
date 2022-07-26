@@ -1,20 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TargetSpawner : MonoBehaviour
 {
-    public int RoundNumber = 1;
-    public bool ShouldSpawn = true;
+    [HideInInspector] public bool ShouldSpawn = false;
+    [HideInInspector] public bool ReadyToSpawn = false;
+    
     public GameObject TargetObject;
 
     [SerializeField] private Transform[] _spawnLocations;
+    [SerializeField] private TextMeshProUGUI _targetCounterText;
 
     private int _randomSpawnLocationIndex;
 
     private void Start()
     {
-
+        ReadyToSpawn = true;
     }
 
     private void Update()
@@ -28,14 +31,16 @@ public class TargetSpawner : MonoBehaviour
                 Instantiate(TargetObject, _spawnLocations[_randomSpawnLocationIndex].position, Quaternion.identity, transform);
                 ShouldSpawn = false;
             }
+
+            ReadyToSpawn = true;
         }
 
-        Debug.Log(transform.childCount);
+        _targetCounterText.text = $"Target: {transform.childCount}";
     }
 
-    private double NumberOfTargets()
+    public double NumberOfTargets()
     {
-        double preciseNumberOfTargets = 0.000058 * Mathf.Pow(RoundNumber, 3) + 0.074032 * Mathf.Pow(RoundNumber, 2) + 0.718119 * RoundNumber + 14.738699;
+        double preciseNumberOfTargets = 0.000058 * Mathf.Pow(GameManager.gameManager.RoundNumber, 3) + 0.074032 * Mathf.Pow(GameManager.gameManager.RoundNumber, 2) + 0.718119 * GameManager.gameManager.RoundNumber + 14.738699;
         double numberOfTargetsRounded = Mathf.Round((float)preciseNumberOfTargets);
         Debug.Log(preciseNumberOfTargets);
         return numberOfTargetsRounded;
