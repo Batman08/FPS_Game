@@ -19,16 +19,19 @@ public class Target : MonoBehaviour
 
 
     private PlayerController _playerController;
+    private TargetSpawner _targetSpawner;
 
     private void Awake()
     {
         Player = FindObjectOfType<PlayerController>().transform;
         _playerController = FindObjectOfType<PlayerController>();
+        _targetSpawner = FindObjectOfType<TargetSpawner>();
     }
 
     private void Start()
     {
-        TargetHealth = 1000f;
+        //TargetHealth = 1000f;
+        TargetHealth = _targetSpawner.TargetHealth;
         TargetDamage = 100f;
     }
 

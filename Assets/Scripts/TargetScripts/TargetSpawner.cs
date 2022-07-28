@@ -7,31 +7,38 @@ public class TargetSpawner : MonoBehaviour
 {
     [HideInInspector] public bool ShouldSpawn = false;
     [HideInInspector] public bool ReadyToSpawn = false;
+    [HideInInspector] public int TotalNumberSpawned = 0;
+    public float TargetHealth = 1000f;
     
     public GameObject TargetObject;
 
     [SerializeField] private Transform[] _spawnLocations;
     [SerializeField] private TextMeshProUGUI _targetCounterText;
 
-    private int _randomSpawnLocationIndex;
-
-    private void Start()
-    {
-        ReadyToSpawn = true;
-    }
+    private int _randomSpawnLocationIndex; //added
 
     private void Update()
     {
         if (ShouldSpawn)
         {
-            while (transform.childCount < NumberOfTargets())
+            //while (transform.childCount < NumberOfTargets())
+            while (TotalNumberSpawned < NumberOfTargets())
             {
                 _randomSpawnLocationIndex = Random.Range(0, _spawnLocations.Length);
-                //Instantiate(TargetObject, transform);
                 Instantiate(TargetObject, _spawnLocations[_randomSpawnLocationIndex].position, Quaternion.identity, transform);
+                TotalNumberSpawned++;
                 ShouldSpawn = false;
+
+                //if (transform.childCount < 24) //added
+                //{
+                //    _randomSpawnLocationIndex = Random.Range(0, _spawnLocations.Length);
+                //    Instantiate(TargetObject, _spawnLocations[_randomSpawnLocationIndex].position, Quaternion.identity, transform);
+                //    TotalNumberSpawned++;
+                //    ShouldSpawn = false;
+                //}
             }
 
+            //GameManager.gameManager.Targets = FindObjectsOfType<Target>();
             ReadyToSpawn = true;
         }
 
