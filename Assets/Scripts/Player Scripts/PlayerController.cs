@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask GroundLayerMask;
     public float Health;
 
+    [HideInInspector] public Vector3 Move;
 
     /*Private Variables*/
     private CharacterController _characterController;
@@ -70,8 +71,8 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis(MOVEMENT_X_AXIS_NAME);
         float z = Input.GetAxis(MOVEMENT_Z_AXIS_NAME);
 
-        Vector3 move = playerTransform.right * x + playerTransform.forward * z;
-        _characterController.Move(move * _movementSpeed * Time.deltaTime);
+        Move = playerTransform.right * x + playerTransform.forward * z;
+        _characterController.Move(Move * _movementSpeed * Time.deltaTime);
 
         JumpMechanic();
 

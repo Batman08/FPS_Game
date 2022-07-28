@@ -5,6 +5,8 @@ using UnityEngine;
 public class WeaponSwitching : MonoBehaviour
 {
     public int _selectedWeapon = 0;
+    public bool HasWeaponSelected = false;
+    //public bool WeaponSlotFull = false;
 
     private void OnEnable()
     {
@@ -14,11 +16,12 @@ public class WeaponSwitching : MonoBehaviour
     private void Update()
     {
         ChangeWeaponInput();
+        CheckIfWeaponSelected();
     }
 
     private void ChangeWeaponInput()
     {
-        int previosSelectedWeapon = _selectedWeapon;
+        int previousSelectedWeapon = _selectedWeapon;
 
         bool hasScrolledUp = Input.GetAxis("Mouse ScrollWheel") > 0;
         bool hasScrolledDown = Input.GetAxis("Mouse ScrollWheel") < 0;
@@ -66,7 +69,7 @@ public class WeaponSwitching : MonoBehaviour
             _selectedWeapon = 1;
         }
 
-        if (previosSelectedWeapon != _selectedWeapon)
+        if (previousSelectedWeapon != _selectedWeapon)
         {
             SelectWeapon();
         }
@@ -74,6 +77,7 @@ public class WeaponSwitching : MonoBehaviour
 
     private void SelectWeapon()
     {
+        Debug.Log($"My child count is: {transform.childCount}");
         int i = 0;
 
         foreach (Transform weapon in transform)
@@ -89,5 +93,21 @@ public class WeaponSwitching : MonoBehaviour
             }
             i++;
         }
+
+        HasWeaponSelected = true;
+    }
+
+    private bool CheckIfWeaponSelected()
+    {
+        if (transform.childCount == 0)
+        {
+            HasWeaponSelected = false;
+        }
+        else if (transform.childCount > 0)
+        {
+            HasWeaponSelected = true;
+        }
+
+        return HasWeaponSelected;
     }
 }

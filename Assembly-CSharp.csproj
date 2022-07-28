@@ -53,17 +53,18 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Weapon Scripts\WeaponDetails.cs" />
     <Compile Include="Assets\Nokobot\Modern Guns - Handgun\_Demo Assets\SimpleShoot.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\TargetScripts\TargetSpawner.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerLook.cs" />
     <Compile Include="Assets\Scripts\Manager Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\WeaponBluePrint.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\Weapon Scripts\WeaponSwitching.cs" />
     <Compile Include="Assets\Scripts\TargetScripts\Target.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\WeaponBluePrint.cs" />
-    <Compile Include="Assets\Scripts\Weapon Scripts\WeaponDetails.cs" />
+    <Compile Include="Assets\Scripts\Weapon Scripts\WeaponPickUp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

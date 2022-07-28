@@ -1019,6 +1019,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectedWeapon: 0
+  HasWeaponSelected: 0
+  WeaponSlotFull: 0
+--- !u!114 &1409161722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409161720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112ae0b58a27c3c43b64ae90fc612d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 0}
+  _pickUpRange: 4
+  _dropForwardForce: 15
+  _dropUpwardForce: 3
 --- !u!198 &1478619806 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6783757086790799754, guid: 6532ddd361f03154dbd6cf7c38acb750, type: 3}
@@ -1205,7 +1223,6 @@ GameObject:
   - component: {fileID: 1792650824}
   - component: {fileID: 1792650823}
   - component: {fileID: 1792650822}
-  - component: {fileID: 1792650821}
   m_Layer: 0
   m_Name: Weapon_AK47
   m_TagString: Untagged
@@ -1227,18 +1244,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1792650821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1792650819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17dba51b699b332469fa26eee938ec4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1792650822
 BoxCollider:
   m_ObjectHideFlags: 0
