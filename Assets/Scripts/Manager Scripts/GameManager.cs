@@ -7,21 +7,24 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
 
-    [HideInInspector]  public int RoundNumber;
-    //[HideInInspector] public Target[] Targets;
-    //[HideInInspector] public GameObject[] Targets;
-    public int NumberOfPlayers;
+    [HideInInspector] public int NumberOfPlayers;
+    [HideInInspector] public int RoundNumber;
+     public float PlayerScore;
 
     [SerializeField] private TextMeshProUGUI _roundCounterText;
     [SerializeField] private bool _chooseRoundNumber = false;
 
     private TargetSpawner _targetSpawner;
+    private float _pointsPerHit = 10;
+    private float _pointsPerKill = 60;
+    //private float _pointsPerKillWonderWeapon = 60;
 
     private void Awake()
     {
         gameManager = this;
-        NumberOfPlayers = 1; //added
+        NumberOfPlayers = 1; //tod: adjust number of players
         RoundNumber = 0;
+        PlayerScore = 0;
     }
 
     private void Start()
@@ -69,14 +72,27 @@ public class GameManager : MonoBehaviour
         _targetSpawner.ShouldSpawn = true;
     }
 
-    private void SetTargetHealthIncremental() {
+    private void SetTargetHealthIncremental()
+    {
         if (RoundNumber > 1 && RoundNumber < 10)
         {
             _targetSpawner.TargetHealth += 150;
         }
-        else if (RoundNumber >= 10) {
+        else if (RoundNumber >= 10)
+        {
             float percentIncrease = (_targetSpawner.TargetHealth * 0.1f);
             _targetSpawner.TargetHealth += percentIncrease;
+        }
+    }
+
+    public void IncrementPlayerScore(bool hasKilledTarget) {
+        if (hasKilledTarget)
+        {
+            PlayerScore += _pointsPerKill;
+        }
+        else
+        {
+            PlayerScore += _pointsPerHit;
         }
     }
 }

@@ -20,12 +20,14 @@ public class Target : MonoBehaviour
 
     private PlayerController _playerController;
     private TargetSpawner _targetSpawner;
+    private GameManager _gameManager;
 
     private void Awake()
     {
         Player = FindObjectOfType<PlayerController>().transform;
         _playerController = FindObjectOfType<PlayerController>();
         _targetSpawner = FindObjectOfType<TargetSpawner>();
+        _gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Start()
@@ -42,7 +44,12 @@ public class Target : MonoBehaviour
         bool targetHasNoHealth = TargetHealth <= 0;
         if (targetHasNoHealth)
         {
+            _gameManager.IncrementPlayerScore(hasKilledTarget: true);
             TargetDie();
+        }
+        else
+        {
+            _gameManager.IncrementPlayerScore(hasKilledTarget: false);
         }
     }
 
